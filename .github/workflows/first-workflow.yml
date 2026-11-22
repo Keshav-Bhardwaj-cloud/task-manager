@@ -1,12 +1,27 @@
-name: First GitHub Actions Workflow
+name: Backend CI
 
 "on":
   push:
     branches:
       - main
+
+  pull_request:
+    branches:
+      - main
 jobs:
   backend:
    runs-on: ubuntu-latest
+
+   services:
+     mongo:
+      image: mongo:8
+      ports:
+        - 27017:27017
+      options: >-
+        --health-cmd "mongosh --eval 'db.adminCommand(\"ping\")'"
+        --health-interval 10s
+        --health-timeout 5s
+        --health-retries 5
 
    steps:
      - name: check repository
@@ -20,4 +35,10 @@ jobs:
      - name: Check Node.js version
        run: node --version
        
-      
+     - name: Install backend Dependencies
+       run: npm ci
+       working-directory: "Task Manager Backend"
+
+     - name: Run Backend Tests
+       run: npm test
+       working-directory: "Task Manager Backend"
