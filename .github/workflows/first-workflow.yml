@@ -1,0 +1,23 @@
+name: First GitHub Actions Workflow
+
+"on":
+  push:
+    branches:
+      - main
+jobs:
+  backend:
+   runs-on: ubuntu-latest
+
+   steps:
+     - name: check repository
+       uses: actions/checkout@v4
+
+     - name: setup Node.js
+       uses: actions/setup-node@v4
+       with:
+         node-version: 22
+
+     - name: Check Node.js version
+       run: node --version
+       
+      
