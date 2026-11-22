@@ -37,8 +37,8 @@ jobs:
        
      - name: Install backend Dependencies
        run: npm ci
-       working-directory: "Task Manager Backend"
+       working-directory: "Task Manger Backend"
 
      - name: Run Backend Tests
        run: npm test
-       working-directory: "Task Manager Backend"
+       working-directory: "Task Manger Backend"
