@@ -1,1 +1,34 @@
+name: Frontend CI
 
+"on":
+ push:
+   branches:
+     - main
+ pull_request:
+   branches:
+     - main
+
+jobs:
+  frontend:
+   runs-on: ubuntu-latest
+
+   steps:
+     - name: check Repository
+       uses: actions/checkout@v7
+
+     - name: Setting up Node.js
+       uses: actions/setup-node@v7
+       with:
+         node-version: 22
+
+     - name: Installing dependencies
+       run: npm ci
+       working-directory: "Task Manager Frontend"
+
+     - name: Run ESlint
+       run: npm run lint
+       working-directory: "Task Manager Frontend"
+
+     - name: Build React Application
+       run: npm run build
+       working-directory: "Task Manager Frontend"
