@@ -26,7 +26,7 @@ jobs:
        working-directory: "Task Manager Frontend"
 
      - name: Run ESlint
-       run: npm run lint
+       run: npm run lint-check
        working-directory: "Task Manager Frontend"
 
      - name: Build React Application
